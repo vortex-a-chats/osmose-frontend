@@ -103,16 +103,15 @@
               <label for="item">
                 <translate>Country</translate>
               </label>
-              <select
-                v-model="country"
-                class="form-control form-control-sm"
-                name="country"
-              >
+              <input type="text"
+                     class="form-control form-control-sm"
+                     list="country" v-model="country" name="country">
+              <datalist id="country">
                 <option value=""></option>
                 <option v-for="res in countries" :key="res" :value="res">
                   {{ res }}
                 </option>
-              </select>
+              </datalist>
             </div>
 
             <div class="form-group col-sm-3 col-md-3">

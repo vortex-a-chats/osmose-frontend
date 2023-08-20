@@ -76,16 +76,17 @@
             <translate>Country</translate>
           </label>
           <div class="col-sm-9">
-            <select
-              v-model="state.country"
-              class="form-control form-control-sm"
-              name="country"
-            >
+            <input type="text"
+                   class="form-control form-control-sm"
+                   list="country"
+                   v-model="state.country"
+                   name="country">
+            <datalist id="country">
               <option value=""></option>
               <option v-for="res in countries" :key="res" :value="res">
                 {{ res }}
               </option>
-            </select>
+            </datalist>
           </div>
         </div>
       </div>
