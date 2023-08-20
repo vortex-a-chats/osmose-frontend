@@ -1,44 +1,88 @@
 <template>
-  <router-view />
+    <router-view/>
 </template>
 
 <script lang="ts">
-export default {}
+    export default {}
 </script>
 
 <style>
-body {
-  text-align: inherit;
-}
+    html {
+        font-size: 1rem;
+    }
 
-th {
-  text-align: center;
-}
+    body {
+        text-align: inherit;
+    }
 
-a:visited {
-  color: #551a8b;
-}
+    th {
+        text-align: center;
+    }
 
-.thead-dark a {
-  color: lightgray;
-}
+    a:visited {
+        color: #551a8b;
+    }
 
-.thead-dark a:visited {
-  color: gray;
-}
+    .thead-dark a {
+        color: lightgray;
+    }
 
-/* iframe for josm links */
-iframe#hiddenIframe {
-  display: none;
-  position: absolute;
-}
+    .thead-dark a:visited {
+        color: gray;
+    }
 
-th.country {
-  height: 15em;
-  vertical-align: bottom;
-}
-th.country .rotate-90 {
-  transform: rotate(-90deg);
-  max-width: 1.5em;
-}
+    /* iframe for josm links */
+    iframe#hiddenIframe {
+        display: none;
+        position: absolute;
+    }
+
+    th.country {
+        height: 15em;
+        vertical-align: bottom;
+    }
+
+    th.country .rotate-90 {
+        transform: rotate(-90deg);
+        max-width: 1.5em;
+    }
+
+    div#top_links {
+        height: 4em;
+    }
+
+    #topmenu li a:link, #topmenu li a:visited {
+        padding: 1rem 2rem;
+        min-width: 14em;
+    }
+
+    .leaflet-sidebar.left.visible,
+    .leaflet-sidebar {
+        padding: 0
+    }
+
+    .leaflet-sidebar.right.visible {
+        right: 2em;
+        max-height: 50vh;
+        top: 10em;
+    }
+
+    div#map {
+        top: 4em !important;
+    }
+
+    div#menu {
+        padding: 1rem 2rem !important;
+        resize: horizontal;
+    }
+
+    div#menu .form-group label.col-form-label {
+        padding-right: 1em;
+        text-align:left !important;
+    }
+
+    .test_group .item {
+        padding-left: 1em;
+    }
+
 </style>

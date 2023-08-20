@@ -1,10 +1,14 @@
 <template>
   <div>
+    <h1 id="menu_filters"> <i class="fa fa-filter" aria-hidden="true"></i> Filtres</h1>
     <div class="form-group row">
-      <label for="level" class="col-sm-3 col-form-label">
+      <label for="level" class="col-sm-5 col-form-label">
+        <span>
+         <i class="fa fa-circle" aria-hidden="true"></i>
+        </span>
         <translate>Severity</translate>
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-7">
         <select v-model="state.level" class="form-control form-control-sm">
           <option class="level-1__" value="1">
             <translate>High</translate>
@@ -27,10 +31,11 @@
     </div>
 
     <div class="form-group row">
-      <label for="fixable" class="col-sm-3 col-form-label">
+      <label for="fixable" class="col-sm-5 col-form-label">
+        <i class="fa fa-warning" aria-hidden="true"></i>
         <translate>Fixable</translate>
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-7">
         <select
           v-model="state.fixable"
           name="fixable"
@@ -45,10 +50,11 @@
     </div>
 
     <div class="form-group row">
-      <label for="tags" class="col-sm-3 col-form-label">
+      <label for="tags" class="col-sm-5 col-form-label">
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
         <translate>Topic</translate>
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-7">
         <select
           v-model="state.tags"
           name="tags"
@@ -68,14 +74,18 @@
         class="more_filters"
         @click.stop.prevent="extra_filter = false"
       >
+
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
         <translate>Less filters</translate> <span>▲</span>
       </a>
       <div>
         <div class="form-group row">
-          <label for="item" class="col-sm-3 col-form-label">
+          <label for="item" class="col-sm-5 col-form-label">
+
+            <i class="fa fa-globe" aria-hidden="true"></i>
             <translate>Country</translate>
           </label>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             <input type="text"
                    class="form-control form-control-sm"
                    list="country"
@@ -92,10 +102,11 @@
       </div>
 
       <div class="form-group row">
-        <label for="source" class="col-sm-3 col-form-label">
+        <label for="source" class="col-sm-5 col-form-label">
+          <i class="fa fa-flag-checkered" aria-hidden="true"></i>
           <translate>Source id</translate>
         </label>
-        <div class="col-sm-9">
+        <div class="col-sm-7">
           <input
             v-model="state.source"
             name="source"
@@ -106,10 +117,11 @@
       </div>
 
       <div class="form-group row">
-        <label for="class" class="col-sm-3 col-form-label">
+        <label for="class" class="col-sm-5 col-form-label">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
           <translate>Class id</translate>
         </label>
-        <div class="col-sm-9">
+        <div class="col-sm-7">
           <input
             v-model="state.class"
             name="class"
@@ -120,10 +132,11 @@
       </div>
 
       <div class="form-group row">
-        <label for="useDevItem" class="col-sm-3 col-form-label">
+        <label for="useDevItem" class="col-sm-5 col-form-label">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
           <translate>Show hidden items</translate>
         </label>
-        <div class="col-sm-9">
+        <div class="col-sm-7">
           <select
             v-model="state.useDevItem"
             name="useDevItem"
@@ -141,20 +154,22 @@
           </select>
         </div>
 
-        <div class="form-group row">
-          <label for="username" class="col-sm-3 col-form-label">
-            <translate>OSM Username</translate>
-          </label>
-          <div class="col-sm-9">
-            <input
-              v-model="state.username"
-              name="username"
-              type="text"
-              class="form-control form-control-sm"
-            />
-          </div>
-        </div>
+
       </div>
+      <div class="form-group row">
+      <label for="username" class="col-sm-5 col-form-label">
+        <i class="fa fa-user-o" aria-hidden="true"></i>
+        <translate>OSM Username</translate>
+      </label>
+      <div class="col-sm-7">
+        <input
+                v-model="state.username"
+                name="username"
+                type="text"
+                class="form-control form-control-sm"
+        />
+      </div>
+    </div>
     </template>
     <a
       v-else
@@ -162,7 +177,8 @@
       class="more_filters"
       @click.stop.prevent="extra_filter = true"
     >
-      <translate>More filters</translate> <span>▼</span>
+      <i class="fa fa-filter" aria-hidden="true"></i>
+      <translate>More filters</translate> <span><i class="fa fa-arrow-bottom" aria-hidden="true"></i></span>
     </a>
   </div>
 </template>
@@ -246,7 +262,7 @@ form {
 }
 
 label {
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .form-group {

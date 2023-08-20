@@ -1,21 +1,30 @@
 <template>
   <div v-if="Object.keys(state).length > 0" id="tests">
     <div id="action_links">
-      <translate>Select:</translate>
-      <a href="#" @click.stop.prevent="toggle_all(true)">
-        <translate>all</translate>
-      </a>
-      <a href="#" @click.stop.prevent="toggle_all(false)">
-        <translate>nothing</translate>
-      </a>
-      <a href="#" @click.stop.prevent="toggle_all(-1)">
-        <translate>invert</translate>
-      </a>
+      <div class="form-control-row row">
+        <div class="col-sm-5 col-form-label">
+
+
+          <translate>Select:</translate>
+        </div>
+        <div class="col-sm-7">
+
+          <a class="btn btn-default btn-outline-primary" href="#" @click.stop.prevent="toggle_all(true)">
+            <translate>all</translate>
+          </a>
+          <a class="btn btn-default btn-outline-primary" href="#" @click.stop.prevent="toggle_all(false)">
+            <translate>nothing</translate>
+          </a>
+          <a class="btn btn-default btn-outline-primary" href="#" @click.stop.prevent="toggle_all(-1)">
+            <translate>invert</translate>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div v-for="categ in categories_format" :key="categ.id" class="test_group">
       <h1>
-        <a href="#" @click.stop.prevent="toggle_categorie_block(categ.id)">
+        <a class="category-header" href="#" @click.stop.prevent="toggle_categorie_block(categ.id)">
           <i class="toggleCategIco"></i>
           {{ categ.title.auto }}
         </a>
@@ -30,14 +39,14 @@
         </a>
       </h1>
 
-      <ul :id="`categorie_block_${categ.id}`">
+      <ul class="category-block" :id="`categorie_block_${categ.id}`">
         <li
           v-for="item in categ.items"
           :key="item.item"
           class="item"
           :title="item.class_format"
-          :style="showItem(item) ? '' : 'display:none'"
         >
+<!--          :style="showItem(item) ? '' : 'display:none'"-->
           <div :class="`marker-l marker-l-${item.item}`"></div>
           <div class="level">
             <template v-for="level in 3">
@@ -241,13 +250,20 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+  .category-block li.item{
+    padding-left: 2rem !important;
+  }
+
 div#tests {
   overflow-y: auto;
 }
 
 div#action_links {
   font-size: 10px;
-  text-align: center;
+}
+
+.category-header{
+  font-size: 1rem;
 }
 .leaflet-touch div#action_links {
   font-size: inherit;

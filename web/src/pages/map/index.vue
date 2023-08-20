@@ -325,7 +325,7 @@ body {
   position: absolute;
   top: 0px;
   left: 300px;
-  right: 300px;
+  right: 3rem;
   bottom: 0px;
 }
 
@@ -369,11 +369,11 @@ body {
 
 @media (min-width: 1200px) {
   .leaflet-sidebar {
-    width: 300px;
+    width: 32rem;
   }
 
   .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 300px;
+    left: 32rem;
   }
 
   .leaflet-sidebar.right.visible ~ .leaflet-right {

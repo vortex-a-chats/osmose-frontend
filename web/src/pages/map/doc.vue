@@ -241,6 +241,9 @@ export default VueParent.extend({
 </script>
 
 <style scoped>
+  #doc{
+    padding: 2em 4em;
+  }
 #doc ~ a.close {
   z-index: 800;
 }

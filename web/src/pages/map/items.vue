@@ -83,9 +83,7 @@ export default Vue.extend({
 </style>
 
 <style scoped>
-div#menu {
-  resize: horizontal;
-}
+
 
 div#menu div#need_zoom {
   font-size: 14px;
