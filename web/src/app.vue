@@ -47,9 +47,6 @@
         max-width: 1.5em;
     }
 
-    div#top_links {
-        height: 4em;
-    }
 
     #topmenu li a:link, #topmenu li a:visited {
         padding: 1rem 2rem;

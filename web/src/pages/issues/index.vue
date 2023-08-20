@@ -101,6 +101,7 @@
           <div class="form-row">
             <div class="form-group col-sm-3 col-md-3">
               <label for="item">
+                <i class="fa fa-globe" aria-hidden="true"></i>
                 <translate>Country</translate>
               </label>
               <input type="text"
@@ -115,9 +116,35 @@
             </div>
 
             <div class="form-group col-sm-3 col-md-3">
-              <label for="item">
-                <translate>Item</translate>
-              </label>
+
+              <div class="row">
+                <div class="col-1">
+                  <label for="item">
+                    <translate>Item</translate>
+                  </label>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <div class="col-8">
+                <input type="text" v-model="item" name="item" id="item" list="items_list">
+
+                </div>
+                <div class="col-1">
+                  <b-dropdown id="dropdown-1" text="+" class="m-md-2" v-model="item">
+                    <template #button-content>
+                      &#x1f50d;<span class="sr-only">Search</span>
+                    </template>
+                    <b-dropdown-item v-for="res in items" :key="res.item" :value="res.item">
+                      {{ res.item }} - {{ res.menu.auto }}
+                    </b-dropdown-item>
+                  </b-dropdown>
+                </div>
+              </div>
+              <datalist id="items_list">
+                <option value="xxxx"></option>
+                <option v-for="res in items" :key="res.item" :value="res.item">
+                  {{ res.item }} - {{ res.menu.auto }}
+                </option>
+              </datalist>
               <select
                 v-model="item"
                 class="form-control form-control-sm"
@@ -642,6 +669,9 @@ export default VueParent.extend({
 </script>
 
 <style scoped>
+  .fa{
+    margin-right: 1ch;
+  }
 a.badge:visited {
   color: #fff; /* Unclicked color for bootstrap badge-secondary */
 }

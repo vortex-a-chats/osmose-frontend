@@ -3,6 +3,7 @@
     <ul id="topmenu">
       <li id="menu-lang">
         <a href="#" onclick="return false;">
+          <i class="fa fa-globe" aria-hidden="true"></i>
           <translate>Change language</translate> ▼
         </a>
         <ul class="submenu">
@@ -20,6 +21,7 @@
 
       <li id="menu-byuser">
         <router-link :to="user ? `../byuser/${user}` : '../byuser/'">
+          <i class="fa fa-user" aria-hidden="true"></i>
           <translate
             translate-comment="TRANSLATORS: link to help in appropriate language"
           >
@@ -40,6 +42,7 @@
         <ul class="submenu">
           <li>
             <a :href="`../issues/open?${params}`" target="_blank">
+              <i class="fa fa-doc-html" aria-hidden="true"></i>
               <translate>Html list</translate>
             </a>
           </li>
@@ -48,6 +51,7 @@
               :href="`${api_url}/api/0.3/issues.josm?${params}`"
               target="hiddenIframe"
             >
+              <i class="fa fa-pencil" aria-hidden="true"></i>
               JOSM
             </a>
           </li>
@@ -56,6 +60,7 @@
               :href="`${api_url}/api/0.3/issues.rss?${params}`"
               target="_blank"
             >
+              <i class="fa fa-rss" aria-hidden="true"></i>
               RSS
             </a>
           </li>
@@ -91,16 +96,19 @@
         <ul class="submenu">
           <li>
             <router-link to="../contact">
+              <i class="fa fa-enveloppe" aria-hidden="true"></i>
               <translate>Contact</translate>
             </router-link>
           </li>
           <li>
             <a href="http://wiki.openstreetmap.org/wiki/Osmose">
+              <i class="fa fa-burger" aria-hidden="true"></i>
               <translate>Help on wiki</translate>
             </a>
           </li>
           <li>
             <router-link to="../copyright">
+              <i class="fa fa-copyright" aria-hidden="true"></i>
               <translate>Copyright</translate>
             </router-link>
           </li>
@@ -298,7 +306,7 @@ div#top_links {
   background-clip: padding-box;
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   position: absolute;
-  height: 24px;
+  height: 4em;
   width: 100%;
   left: 0px;
   top: 0px;
@@ -326,7 +334,7 @@ div#top_links {
 #topmenu li a:visited {
   display: block;
   margin: 0;
-  padding: 2px 8px;
+  /*padding: 2px 8px;*/
   border-right: 1px solid #cccccc;
   text-decoration: none;
 }

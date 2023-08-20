@@ -324,7 +324,7 @@ body {
 .leaflet-active-area {
   position: absolute;
   top: 0px;
-  left: 300px;
+  left: 32rem;
   right: 3rem;
   bottom: 0px;
 }
@@ -350,20 +350,20 @@ body {
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .leaflet-sidebar {
-    width: 285px;
+    width: 28rem;
   }
 
   .leaflet-sidebar.left.visible ~ .leaflet-left {
-    left: 285px;
+    left: 28rem;
   }
 
   .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 285px;
+    right: 28rem;
   }
 
   .leaflet-active-area {
-    left: 285px;
-    right: 285px;
+    left: 28rem;
+    right: 28rem;
   }
 }
 
@@ -377,12 +377,12 @@ body {
   }
 
   .leaflet-sidebar.right.visible ~ .leaflet-right {
-    right: 300px;
+    right: 32rem;
   }
 
   .leaflet-active-area {
-    left: 300px;
-    right: 300px;
+    left: 32rem;
+    right: 32rem;
   }
 }
 </style>
