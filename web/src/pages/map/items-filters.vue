@@ -72,20 +72,27 @@
       </a>
       <div>
         <div class="form-group row">
-          <label for="item" class="col-sm-3 col-form-label">
+          <label for="country_select" class="col-sm-3 col-form-label">
             <translate>Country</translate>
           </label>
           <div class="col-sm-9">
-            <select
-              v-model="state.country"
-              class="form-control form-control-sm"
-              name="country"
-            >
-              <option value=""></option>
-              <option v-for="res in countries" :key="res" :value="res">
-                {{ res }}
-              </option>
-            </select>
+            typeahead:
+            <vue-bootstrap-typeahead
+                    v-model="state.country"
+                    :data="countries"
+                    append="🔎"
+            />
+<!--            <select-->
+<!--              v-model="state.country"-->
+<!--              class="form-control form-control-sm"-->
+<!--              id="country_select"-->
+<!--              name="country"-->
+<!--            >-->
+<!--              <option value=""></option>-->
+<!--              <option v-for="res in countries" :key="res" :value="res">-->
+<!--                {{ res }}-->
+<!--              </option>-->
+<!--            </select>-->
           </div>
         </div>
       </div>
@@ -168,11 +175,14 @@
 
 <script lang="ts">
 import _ from 'lodash'
-import Vue, { PropType } from 'vue'
+import Vue, {PropType, ref} from 'vue'
+import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'
 
 import { ItemState } from '../../types'
-
 export default Vue.extend({
+  components:{
+    VueBootstrapTypeahead
+  },
   props: {
     original_tags: {
       type: Array as PropType<string[]>,
@@ -196,7 +206,8 @@ export default Vue.extend({
     return {
       tags: [],
       state: Object.assign({}, this.itemState),
-      extra_filter: false,
+      extra_filter: true,
+      custom_countries: ref(this.countries)
     }
   },
 

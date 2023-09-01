@@ -41,4 +41,10 @@ th.country .rotate-90 {
   transform: rotate(-90deg);
   max-width: 1.5em;
 }
+.type-ahead{
+  width: 100%;
+  display: block;
+  float:left;
+  clear:both;
+}
 </style>

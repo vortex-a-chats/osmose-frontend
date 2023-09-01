@@ -2,7 +2,7 @@
   <div>
     <vue-topprogress ref="topProgress"></vue-topprogress>
     <div v-if="error">{{ error }}</div>
-    <div v-else-if="errors">
+    <div v-else-if="errors" id="errors_list">
       <sorted-table
         :values="sortable(errors)"
         class="table table-striped table-bordered table-hover table-sm"
@@ -342,4 +342,7 @@ tr.delete-row td {
   background-color: red;
   transition: all 0.7s linear;
 }
+  #errors_list{
+    margin: 1em;
+  }
 </style>

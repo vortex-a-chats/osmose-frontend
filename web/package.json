@@ -27,6 +27,7 @@
     "marked": "^0.8.2",
     "numeral": "^2.0.6",
     "vue": "^2.6.12",
+    "vue-bootstrap-typeahead": "^0.2.6",
     "vue-filter-number-format": "^3.0.1",
     "vue-i18n": "^8.24.2",
     "vue-router": "^3.5.1",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
+    "@types/lodash": "^4.14.197",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "babel-loader": "^8.2.2",
     "base64-image-loader": "^1.2.1",

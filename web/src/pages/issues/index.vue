@@ -100,26 +100,52 @@
           <h1 v-if="full_filter">Class filters</h1>
           <div class="form-row">
             <div class="form-group col-sm-3 col-md-3">
-              <label for="item">
+              <label for="country">
                 <translate>Country</translate>
               </label>
-              <select
-                v-model="country"
-                class="form-control form-control-sm"
-                name="country"
-              >
-                <option value=""></option>
-                <option v-for="res in countries" :key="res" :value="res">
-                  {{ res }}
-                </option>
-              </select>
+              <section>
+                <div class="type-ahead">
+                  <vue-bootstrap-typeahead
+                          :id="'country'"
+                          :placeholder="'France'"
+                          v-model="country"
+                          :data="countries"
+                  />
+                </div>
+                <span class="btn btn-default" @click="showAllCountries = !showAllCountries"><i class="fa fa-eye"></i></span>
+
+                <select
+                        v-if="showAllCountries"
+                        v-model="country"
+                        class="form-control form-control-sm"
+                        name="country"
+                >
+                  <option value=""></option>
+                  <option v-for="res in countries" :key="res" :value="res">
+                    {{ res }}
+                  </option>
+                </select>
+              </section>
+
             </div>
 
             <div class="form-group col-sm-3 col-md-3">
               <label for="item">
-                <translate>Item</translate>
+                <translate>Item</translate> -  {{item}}
+
               </label>
+              <div class="type-ahead">
+                <vue-bootstrap-typeahead
+                        :id="'item'"
+                        v-model="item_typeahead_selected"
+                        placeholder="8410 charging station"
+                        :data="items_typeahead"
+                        :minMatchingChars="1"
+                        @hit="onHitItem"
+                />
+              </div>
               <select
+                      id="item"
                 v-model="item"
                 class="form-control form-control-sm"
                 name="item"
@@ -136,6 +162,7 @@
                 <translate>Severity</translate>
               </label>
               <select
+                id="level"
                 v-model="level"
                 name="level"
                 class="form-control form-control-sm"
@@ -198,6 +225,7 @@
                   <translate>Source id</translate>
                 </label>
                 <input
+                        id="source"
                   v-model="source"
                   name="source"
                   type="text"
@@ -206,10 +234,11 @@
               </div>
 
               <div class="form-group col-sm-3 col-md-3">
-                <label for="class">
+                <label for="class_id">
                   <translate>Class id</translate>
                 </label>
                 <input
+                        id="class_id"
                   v-model="class_"
                   name="class"
                   type="text"
@@ -221,7 +250,13 @@
                 <label for="tags">
                   <translate>Tag</translate>
                 </label>
+                <vue-bootstrap-typeahead
+                        v-model="tags"
+                        placeholder="bakery"
+                        :data="tags_list"
+                />
                 <select
+                        id="tags"
                   v-model="tags"
                   name="tags"
                   class="form-control form-control-sm"
@@ -238,6 +273,7 @@
                   <translate>Show hidden items</translate>
                 </label>
                 <select
+                        id="useDevItem"
                   v-model="useDevItem"
                   name="useDevItem"
                   class="form-control form-control-sm"
@@ -262,6 +298,7 @@
                   <translate>OSM Username</translate>
                 </label>
                 <input
+                        id="username"
                   v-model="username"
                   name="username"
                   type="text"
@@ -274,6 +311,7 @@
                   <translate>BBox</translate>
                 </label>
                 <input
+                        id="bbox"
                   v-model="bbox"
                   name="bbox"
                   type="text"
@@ -286,6 +324,7 @@
                   <translate>Fixable</translate>
                 </label>
                 <select
+                        id="fixable"
                   v-model="fixable"
                   name="fixable"
                   class="form-control form-control-sm"
@@ -419,7 +458,7 @@
           :remote_url_read="remote_url_read"
           :page_args="`status=${gen}&`"
         />
-        <a href="#" @click.stop.prevent="show_more()">
+        <a class="show-more-link" href="#" @click.stop.prevent="show_more()">
           <translate>Show more issues</translate>
         </a>
       </div>
@@ -433,6 +472,9 @@ import TimeAgo from 'vue2-timeago'
 import IssuesList from '../../components/issues-list.vue'
 import Translate from '../../components/translate.vue'
 import VueParent from '../Parent.vue'
+
+import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'
+import {ref} from "vue";
 
 interface ErrorsGroup {
   item: number
@@ -467,6 +509,8 @@ export default VueParent.extend({
     limit: number
     source: number
     class_: number[]
+    items_typeahead: string[]
+    item_typeahead_selected: any
     tags_list: string[]
     tags: string[]
     useDevItem: string
@@ -483,6 +527,8 @@ export default VueParent.extend({
       favicon: null,
       countries: [],
       items: [],
+      items_typeahead: [],
+      item_typeahead_selected: '',
       errors_groups: [],
       total: 0,
       opt_date: false,
@@ -515,6 +561,7 @@ export default VueParent.extend({
   },
 
   components: {
+    VueBootstrapTypeahead,
     IssuesList,
     TimeAgo,
     Translate,
@@ -531,6 +578,17 @@ export default VueParent.extend({
   },
 
   methods: {
+    onHitItem(event:any){
+      console.log('onHitItem',event, this.item_typeahead_selected)
+    },
+    makeItemTypeahead(){
+      this.items_typeahead = []
+      console.log('this.items', this.items)
+      this.items.map(item=> {
+        this.items_typeahead.push(item.item + ' - ' + item.menu.auto)
+      })
+      console.log('this.items_typeahead', this.items_typeahead)
+    },
     sortable(data: ErrorsGroup[]): ErrorsGroup[] {
       return data
         .map((res) => {
@@ -541,6 +599,7 @@ export default VueParent.extend({
     },
 
     render(): void {
+
       this.country = this.$route.query.country
       this.item = this.$route.query.item
       this.level = this.$route.query.level
@@ -613,6 +672,11 @@ export default VueParent.extend({
           document.head.appendChild(rss)
         }
       )
+
+
+      console.log('ttttttttttttttttt')
+      this.makeItemTypeahead()
+
     },
 
     show_more(): void {
@@ -654,5 +718,13 @@ input[type='text'] {
 }
 #errors-list select {
   width: 100%;
+}
+a.show-more-link span{
+  padding:1em !important;
+  margin-left: 1em !important;
+}
+#table_source{
+  margin: 1em;
+  width: calc(100vw - 2em)
 }
 </style>
